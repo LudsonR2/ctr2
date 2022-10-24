@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,31 +13,33 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('vendor/adminlte/auth/login');
 });
 
-Route::get('admin', function () {
-    return view('admin');
+Route::get('/register', function() {
+    //return redirect('/login');
+    return view('vendor/adminlte/auth/register');
 });
 
-Auth::routes();
+Route::get('/login', function() {
+    return view('vendor/adminlte/auth/login');
+});
+
+Route::get('/password/reset', function() {
+    return view('vendor/adminlte/auth/passwords/email');
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/uplista', [App\Http\Controllers\UplistaController::class, 'index'])->name('uplista');
+Route::post('/uplista', [App\Http\Controllers\UplistaController::class, 'pegaArquivo'])->name('pegaArquivo');
 
-Auth::routes();
+Route::get('/upevento', [App\Http\Controllers\UpeventoController::class, 'index'])->name('upevento');
+Route::post('/upevento', [App\Http\Controllers\UpeventoController::class, 'pegaEvento'])->name('pegaEvento');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/config', [App\Http\Controllers\ConfigController::class, 'index'])->name('config');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

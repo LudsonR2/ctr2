@@ -15,7 +15,7 @@
     {{-- Title --}}
     <title>
         @yield('title_prefix', config('adminlte.title_prefix', ''))
-        @yield('title', config('adminlte.title', 'AdminLTE 3'))
+        @yield('title', config('adminlte.title', 'R2 | Clevertap AC'))
         @yield('title_postfix', config('adminlte.title_postfix', ''))
     </title>
 
@@ -79,8 +79,13 @@
 <body class="@yield('classes_body')" @yield('body_data')>
 
     {{-- Body Content --}}
+    @if (Auth::check())
+        @include('adminlte::nav')
+        @include('adminlte::menu')
+    @endif
+    
     @yield('body')
-
+    
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
