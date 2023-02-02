@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Queue;
+
 
 class UplistaController extends Controller
 {
+    protected $tag;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,44 +29,51 @@ class UplistaController extends Controller
 
     public function pegaArquivo(Request $request){
         $file = $request->file('arquivo');
-        $lista = $request->input('tag');
+        $this->tag = $request->input('tag');
 
         $handle = fopen($file->getRealPath(), "r");
         $header = fgetcsv($handle, 1000, ",");
 
+
+        
         while ($row = fgetcsv($handle, 1000, ",")) {
             $registro = array_combine($header, $row);
 
             $identity = $registro['identity'];
-            $tag = $lista;
+
+            $profileData = array(
+                "Email" => $identity
+            );
 
             $eventData = array(
-                "name" => $tag
-        );
+                "name" => $this->tag
+            );
     
         //Procurar TAGs ENTRE
         $data = array(
             "d" => [
-                    array(
-                        "identity" => $identity,
-                        "type" => "event",
-                        "evtName" => "Tag",
-                            "evtData" => 
-                                $eventData
-                        )
-                    ]             
+                array(
+                    "identity" => $identity,
+                    "type" => "profile",
+                    "profileData" => 
+                            $profileData
+                ), array(
+                    "identity" => $identity,
+                    "type" => "event",
+                    "evtName" => "Tag",
+                        "evtData" => 
+                            $eventData
+                    )
+                ]            
         ); 
 
-        $response = Http::withOptions(["verify" => false])
-        ->withHeaders([
-            'Authorization' => 'Bearer ' . config('token'),
-            'X-CleverTap-Account-Id' => 'TEST-9RZ-RK8-W66Z',
-            'X-CleverTap-Passcode' => 'QOK-IWW-YEUL',
-            'Content-Type' => 'application/json'])
-        ->post('https://us1.api.clevertap.com/1/upload', $data);
+        //Dispatch
+
+        SendTag::dispatch($data);
+        
         }
 
         fclose($handle);
-        return view('vendor/adminlte/uplista', compact('response') );
+        return view('vendor/adminlte/uplista' );
     }
 }

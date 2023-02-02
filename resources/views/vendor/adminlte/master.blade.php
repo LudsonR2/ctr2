@@ -14,9 +14,7 @@
 
     {{-- Title --}}
     <title>
-        @yield('title_prefix', config('adminlte.title_prefix', ''))
-        @yield('title', config('adminlte.title', 'R2 | Clevertap AC'))
-        @yield('title_postfix', config('adminlte.title_postfix', ''))
+        R2 CleverTap
     </title>
 
     {{-- Custom stylesheets (pre AdminLTE) --}}

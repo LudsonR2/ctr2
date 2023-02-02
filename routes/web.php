@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Jobs\SendTag;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,18 @@ Route::get('/password/reset', function() {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/uplista', [App\Http\Controllers\UplistaController::class, 'index'])->name('uplista');
-Route::post('/uplista', [App\Http\Controllers\UplistaController::class, 'pegaArquivo'])->name('pegaArquivo');
 
+//Route::post('/uplista', [App\Http\Controllers\UplistaController::class, 'pegaArquivo'])->name('pegaArquivo');
+Route::post('/uplista' , function() {
+
+    SendTag::dispatch();
+});
+
+
+Route::get('/exclusao', [App\Http\Controllers\ExclusaoController::class, 'exclusao'])->name('exclusao');
 Route::get('/upevento', [App\Http\Controllers\UpeventoController::class, 'index'])->name('upevento');
 Route::post('/upevento', [App\Http\Controllers\UpeventoController::class, 'pegaEvento'])->name('pegaEvento');
-
 Route::get('/config', [App\Http\Controllers\ConfigController::class, 'index'])->name('config');
+
+
 

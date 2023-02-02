@@ -62,6 +62,29 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Exclusão de Listas
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                           
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('uplista')}}" class="nav-link {{ request()->is('uplista') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>PROCV (VLOOKUP)</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('config') }}" class="nav-link {{ request()->is('config') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>

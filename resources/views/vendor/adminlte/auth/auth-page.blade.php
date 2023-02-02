@@ -41,7 +41,7 @@
                 @endif
 
                 {{-- Logo Label --}}
-                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
+                {!! config('adminlte.logo', '<b>R2</b>CAC') !!}
 
             </a>
         </div>
@@ -53,7 +53,7 @@
             @hasSection('auth_header')
                 <div class="card-header {{ config('adminlte.classes_auth_header', '') }}">
                     <h3 class="card-title float-none text-center">
-                        @yield('auth_header')
+                        @yield('auth_header')ss
                     </h3>
                 </div>
             @endif

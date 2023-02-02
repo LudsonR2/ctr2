@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Tag - Criar Lista de Audiência</h1>
+                        <h1 class="m-0">Desduplicação - Excluir registros de lista duplicados</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Uplista</li>
+                            <li class="breadcrumb-item"><a href="{{ route('exclusao') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Desduplicação</li>
                         </ol>
                     </div>
                 </div>
@@ -28,15 +28,17 @@
                             <div class="card-body">
                                 <h3 class="title">Selecione o Arquivo em CSV</h3>
                                 <br>
-                                <p><span>Será atribuído uma tag com nome sugerido, serve como conceito de lista na segmentação</span></p>
+                                <p><span>Será atribuído o evento para todos os usuários, serve como conceito de lista na segmentação</span></p>
                                 <p class="card-text">
-                                    <form action="{{ route('pegaArquivo') }}" method="post" enctype="multipart/form-data">
-                                        <input type="text" name="tag" class="col-lg-6"placeholder="Digite nome da Tag"/>
+                                    <form action="{{ route('pegaEvento') }}" method="post" enctype="multipart/form-data">
+                                        <input type="text" name="evento" class="col-lg-6"placeholder="Nome do Evento"/>
+                                        <br><br>    
+
                                         <input type="file" name="arquivo">
                                         @csrf <!-- {{ csrf_field() }} -->
                                         ...
                                         <button type="submit" name="submit" class="btn btn-success btn-block mt-4">
-                                            Subir Lista 
+                                            Atribuir Evento
                                         </button>
                                     </form>
                                 </p>
@@ -53,8 +55,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">CallBack</h5>
                                 <p class="card-text">
-                                    
-                                  
+                                    @if (Request::isMethod('post'))
+                                    {
+                                    {{ $response }}
+                                    }
+                                    @endif
                                 </p>
                             
                             </div>
