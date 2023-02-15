@@ -13,7 +13,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>-->
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <p style="color:#ffff">Bem-vindo <a href="#" class="d-block">{{ Auth::user()->name }}</a> </p>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+                            <a href="{{ route('uplista') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Home</p>
                             </a>
@@ -63,37 +63,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>
-                            Exclusão de Listas
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                           
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('uplista')}}" class="nav-link {{ request()->is('uplista') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>PROCV (VLOOKUP)</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('config') }}" class="nav-link {{ request()->is('config') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Configurações
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
             </ul>
         </nav>
 

@@ -35,7 +35,9 @@ Route::get('/password/reset', function() {
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [App\Http\Controllers\UplistaController::class, 'index'])->name('uplista');
 Route::get('/uplista', [App\Http\Controllers\UplistaController::class, 'index'])->name('uplista');
 
 //Route::post('/uplista', [App\Http\Controllers\UplistaController::class, 'pegaArquivo'])->name('pegaArquivo');
