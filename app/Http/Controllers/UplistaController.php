@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Queue;
 
 
 class UplistaController extends Controller
+
 {
     protected $tag;
 
@@ -28,7 +29,7 @@ class UplistaController extends Controller
     }
 
     public function pegaArquivo(Request $request){
-        $file = $request->file('arquivo');
+    $file = $request->file('arquivo');
         $this->tag = $request->input('tag');
 
         $handle = fopen($file->getRealPath(), "r");
@@ -66,14 +67,11 @@ class UplistaController extends Controller
                     )
                 ]            
         ); 
-
         //Dispatch
-
         SendTag::dispatch($data);
-        
         }
-
         fclose($handle);
+        
         return view('vendor/adminlte/uplista' );
     }
 }

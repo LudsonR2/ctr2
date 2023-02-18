@@ -37,15 +37,10 @@ Route::get('/password/reset', function() {
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\UplistaController::class, 'index'])->name('uplista');
+Route::get('/home', [App\Http\Controllers\UplistaController::class, 'index'])->name('home');
 Route::get('/uplista', [App\Http\Controllers\UplistaController::class, 'index'])->name('uplista');
 
-//Route::post('/uplista', [App\Http\Controllers\UplistaController::class, 'pegaArquivo'])->name('pegaArquivo');
-Route::post('/uplista' , function() {
-
-    SendTag::dispatch();
-});
-
+Route::post('/uplista' , [App\Http\Controllers\UplistaController::class, 'pegaArquivo']);
 
 Route::get('/exclusao', [App\Http\Controllers\ExclusaoController::class, 'exclusao'])->name('exclusao');
 Route::get('/upevento', [App\Http\Controllers\UpeventoController::class, 'index'])->name('upevento');

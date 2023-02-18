@@ -30,7 +30,7 @@
                                 <br>
                                 <p><span>Será atribuído uma tag com nome sugerido, serve como conceito de lista na segmentação</span></p>
                                 <p class="card-text">
-                                    <form action="{{ route('pegaArquivo') }}" method="post" enctype="multipart/form-data">
+                                    <form action="" method="post" enctype="multipart/form-data">
                                         <input type="text" name="tag" class="col-lg-6"placeholder="Digite nome da Tag"/>
                                         <input type="file" name="arquivo">
                                         @csrf <!-- {{ csrf_field() }} -->
