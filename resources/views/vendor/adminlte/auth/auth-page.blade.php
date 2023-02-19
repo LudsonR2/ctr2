@@ -1,6 +1,6 @@
 @extends('adminlte::master')
 
-@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
+@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'uplista') )
 
 @if (config('adminlte.use_route_url', false))
     @php( $dashboard_url = $dashboard_url ? route($dashboard_url) : '' )
@@ -12,6 +12,7 @@
     @stack('css')
     @yield('css')
 @stop
+<link rel='stylesheet' id='theme-style-css' href='{{ url("vendor/adminlte/dist/css/over31.css") }}' type='text/css' media='all' />
 
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
@@ -53,7 +54,7 @@
             @hasSection('auth_header')
                 <div class="card-header {{ config('adminlte.classes_auth_header', '') }}">
                     <h3 class="card-title float-none text-center">
-                        @yield('auth_header')ss
+                        @yield('auth_header')
                     </h3>
                 </div>
             @endif

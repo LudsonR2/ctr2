@@ -6,6 +6,9 @@ use App\Jobs\SendTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 
 class UplistaController extends Controller
@@ -29,7 +32,9 @@ class UplistaController extends Controller
     }
 
     public function pegaArquivo(Request $request){
-    $file = $request->file('arquivo');
+
+        $file = $request->file('arquivo');
+        
         $this->tag = $request->input('tag');
 
         $handle = fopen($file->getRealPath(), "r");

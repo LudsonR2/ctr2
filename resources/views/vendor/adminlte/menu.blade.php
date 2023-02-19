@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
         <img src="https://assets.r2.com.vc/uploads/2022/05/logotipo-2.svg" alt="" class="brand-image"
             style="opacity: .8">
         <span class="brand-text font-weight-light">Clever AC</span>
@@ -37,7 +37,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Clevertap AC
+                            CT
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

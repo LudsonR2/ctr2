@@ -1,13 +1,14 @@
 @extends('vendor/adminlte/master')
-
 @section('body')
-    <div class="content-wrapper">
 
+<div id="app">  
+    <div class="content-wrapper">
+        
         <div class="content-header">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Tag - Criar Lista de Audiência</h1>
+                        <h1 class="m-0">Adicionar Tag</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -20,50 +21,72 @@
         </div>
 
 
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="title">Selecione o Arquivo em CSV</h3>
-                                <br>
-                                <p><span>Será atribuído uma tag com nome sugerido, serve como conceito de lista na segmentação</span></p>
-                                <p class="card-text">
-                                    <form action="" method="post" enctype="multipart/form-data">
-                                        <input type="text" name="tag" class="col-lg-6"placeholder="Digite nome da Tag"/>
-                                        <input type="file" name="arquivo">
-                                        @csrf <!-- {{ csrf_field() }} -->
-                                        ...
-                                        <button type="submit" name="submit" class="btn btn-success btn-block mt-4">
-                                            Subir Lista 
-                                        </button>
-                                    </form>
-                                </p>
-                            
-                            </div>
-                        </div>
-                        
+        <div class="content-header">
+            <div class="container">
+                
+                <div class="card box-header">
+                    <div class="card-header">
+                    <h3 class="card-title">Insira o nome da tag que será atribuído a lista</h3>
+                    <div class="card-tools">
+                        <!-- Buttons, labels, and many other things can be placed here! -->
+                        <!-- Here is a label for example -->
+                       
                     </div>
+                    <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf <!-- {{ csrf_field() }} -->   
+                            
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <button type="button" class="btn btn-secondary">Tag</button>
+                                </div>
+                                
+                                <input type="text" name="tag" placeholder="Digite o nome da Tag" class="form-control">
+                            </div>
 
-
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">CallBack</h5>
-                                <p class="card-text">
+                            <div class="form-group">
+                                <div class="form-control">
                                     
+                                    <input type="file" name="arquivo"  v-on:change="onFileSelected" class="" id="customFile">
                                   
-                                </p>
+                                </div>
+                                
+                             </div>
                             
+                            
+                        <div class="info-box bg-gradient-warning">
+                            <span class="info-box-icon"><i class="far fa-far fa-copy"></i></span>
+                            <div class="info-box-content">
+                              <span class="info-box-text">@verbatim Arquivo selecionado: <strong>{{ selectedFile }} </strong> @endverbatim</span>
+                              <span class="info-box-number">Quantidade de Registros: 0</span>
+                              <div class="progress">
+                                <div class="progress-bar" style="width: 50%"></div>
+                              </div>
+                              <span class="progress-description">
+                                50% 
+                              </span>
                             </div>
-                        </div>
-                        
+                            <div class="overlay" v-show="value2">
+                                <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                              </div>
+                          </div>
+                         
+                          <button type="submit" name="submit" class="text-lg btn btn-success btn-flat col-md-12">
+                            <strong>ENVIAR PARA CLEVERTAP</strong>
+                          </button>
+                    </form>
                     </div>
-
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                    
+                    </div>
+                    <!-- /.card-footer -->
                 </div>
-
+                <!-- /.card -->
+        
             </div>
         </div>
 
@@ -71,4 +94,25 @@
 
     
     </div>
+</div>
+
+<script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js',
+    
+  
+    createApp({
+      data() {
+        return {
+          value1: true,
+          value2: false,
+          selectedFile: null
+        }
+      },
+      methods: {
+            onFileSelected(event){
+                this.selectedFile = event.target.files[0].name
+            }
+        }
+    }).mount('#app')
+  </script>
 @endsection
